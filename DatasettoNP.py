@@ -3,7 +3,10 @@ from os import listdir
 import numpy as np
 from scipy.misc import imread, imresize
 from keras.utils import to_categorical
-
+'''
+Original method for processing this dataset comes from 
+https://gist.github.com/ardamavi/a7d06ff8a315308771c70006cf494d69
+'''
 
 img_size = 64
 grayscale_images = True
@@ -33,6 +36,7 @@ def build_dataset(datasetPath):
     #normalize values to [0,1]
     X = 1-np.array(X).astype('float32')/255.
     Y = np.array(Y).astype('float32')
+    #Convert y to labels 
     Y = to_categorical(Y, num_class)
     if not os.path.exists('np_dataset/'):
         os.makedirs('np_dataset/')
